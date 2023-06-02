@@ -38,16 +38,16 @@ export default function TodoList() {
                 <div className="col-md-8">
 
                     {todoList.length === 0 ?
-                        <input type="text" name="todoList" placeholder="No hay tareas, añadir tarea" className="form-control" onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} value={input} id="validationServer01" /> : <input type="text" name="todoList" placeholder="Añadir tarea" className="form-control" onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} value={input} id="validationServer01" />
+                        <input type="text" name="todoList" placeholder="No hay tareas, añadir tarea" className="form-control d-flex justify-content-center" onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} value={input} id="validationServer01" /> : <input type="text" name="todoList" placeholder="Añadir tarea" className="d-flex justify-content-center form-control" onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} value={input} id="validationServer01" />
                     }
-                    <ul>
+                    <ol className  ='list-group-numbered col-md-8 col-4 d-flex justify-content-center'>
                         {todoList.map((element, index) => {
                             console.log(element.id);
-                            return (<li key={element.id} onClick={() => handleDelete(element.id)}>
+                            return (<li className="list-group-item" key={element.id} onClick={() => handleDelete(element.id)}>
                                 {element.task}
                             </li>);
                         })}
-                    </ul>
+                    </ol>
                     <p>{todoList.length} tareas pendientes</p>
                 </div>
             </form>
