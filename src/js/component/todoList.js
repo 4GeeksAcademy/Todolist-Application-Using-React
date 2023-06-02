@@ -34,16 +34,17 @@ export default function TodoList() {
     console.log(todoList.length);
     return (
         <>
-            <form className="row">
-                <div className="col-md-8">
+            
+            <form className="row d-flex justify-content-center mt-4">
+                <div className="col-md-6">
 
                     {todoList.length === 0 ?
-                        <input type="text" name="todoList" placeholder="No hay tareas, añadir tarea" className="form-control d-flex justify-content-center" onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} value={input} id="validationServer01" /> : <input type="text" name="todoList" placeholder="Añadir tarea" className="d-flex justify-content-center form-control" onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} value={input} id="validationServer01" />
+                        <input type="text" name="todoList" placeholder="No hay tareas, añadir tarea" className="form-control text-center" onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} value={input} id="validationServer01" /> : <input type="text" name="todoList" placeholder="Añadir tarea" className="form-control" onKeyDown={handleKeyDown} onChange={e => setInput(e.target.value)} value={input} id="validationServer01" />
                     }
-                    <ol className  ='list-group-numbered col-md-8 col-4 d-flex justify-content-center'>
+                    <ol className  ='list-group-numbered card p-0'>
                         {todoList.map((element, index) => {
                             console.log(element.id);
-                            return (<li className="list-group-item" key={element.id} onClick={() => handleDelete(element.id)}>
+                            return (<li className="list-group-item card-body border p-0" key={element.id} onClick={() => handleDelete(element.id)}>
                                 {element.task}
                             </li>);
                         })}
