@@ -1,11 +1,69 @@
-/* 
+.todo-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #c1e1dc;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+.todo-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
 
-*/
+.input-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: #6a5acd; /* morado suave */
+}
+
+.todo-button {
+  padding: 10px 16px;
+  background: #6a5acd;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.todo-button:hover {
+  background: #5b4db2;
+}
+
+.todo-list {
+    list-style: none;   
+    padding: 0;
+    margin-top: 25px;
+}
+
+.todo-item {
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  transition: 0.3s ease;
+  text-align: left;
+}
+
+.todo-item:hover {
+  background: #ececec;
+}
