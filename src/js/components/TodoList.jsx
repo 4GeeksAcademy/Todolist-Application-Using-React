@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const TodoList = () => {
     // Se inicia con array vacío porque no hay tareas (Representa la lista de tareas)
@@ -34,10 +34,49 @@ const TodoList = () => {
         setInputValue("");
     };
 
+    // Función para eliminar una tarea
+    const deleteTask = (id) => {
+        const newArray = tasks.filter(t => {
+            return t.id !== id;
+        });
+        setTasks(newArray);
+    };
+
+    // Hacer que los datos no se borren cuando recargo la página
+    useEffect (() => {
+        // Obtener Json del localstorage
+        const savedData = localStorage.getItem("my-tasks");
+        console.log("Cargando tareas desde storage:", savedData);
+
+        if (savedData !== null) {
+             // Si hay datos, los parseamos (JSON a Array) y actualizamos el estado
+            const arrayRecovered = JSON.parse(savedData);
+            setTasks(arrayRecovered);
+        };
+
+    }, []); // Array vacío para cargar al montar
+
+    const firstLoad = useRef(true);
+
+    // Guardar tareas
+    useEffect (() => {
+       if (firstLoad.current) {
+        // No gurdar primera vez
+        firstLoad.current = false;
+        return;
+
+       }
+       console.log("Guardando tareas:", tasks);
+       const jsonToSave = JSON.stringify(tasks);
+       localStorage.setItem("my-tasks", jsonToSave);
+
+    }, [tasks]);
+
+
     return (
         <div className="todo-container">
             <h1 className="todo-title">TodoList</h1>
-            <div className="input-wraper">
+            <div className="input-wrapper">
             <input
             className="todo-input"
             type="text"
@@ -48,14 +87,25 @@ const TodoList = () => {
             />
 
             {/* <button onClick={addTask}>Add task</button> */}
-            <ul className="todo-list">
+            {tasks.length === 0 ? (
+                <p className="empty-message my-3">🚨 There aren't tasks, add new tasks ✍️</p>
+            ) : (
+                <ul className="todo-list">
                 {tasks.map((t) => (
-                    <li key={t.id} className="todo-item">{t.text}</li>
+                    <li key={t.id} className="todo-item">{t.text}
+                    <button
+                    className="delete-btn"
+                    onClick={() => deleteTask(t.id)}>x
+                    </button>
+                    </li>
                 ))}
             </ul>
+            )}
+            <p className="task-counter">Total task: {tasks.length}</p>
             </div>
         </div>
     );
-}
+};
+
 
 export default TodoList;
